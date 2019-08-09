@@ -1,0 +1,19 @@
+题目描述：实现用两个队列实现一个栈
+思路：
+进栈：元素入队列A中
+出栈：判断如果队列A中只有一个元素，直接出队列。否则将队列A中的元素出队列并放入队列B，直到队列A中的元素留下一个，然后队列A出队列，为了下一次继续操作，互换队A和队B。
+代码：
+class Solution:
+  def __init__(self):
+    self.queueA = []
+    self.queueB = []
+  def push(self,node):
+    self.queueA.append(node)
+    
+  def pop(self):
+    if len(self.queueA)==0:
+      return None
+    while len(self.queueA)!=1:
+      self.queueB.append(self.queueA.pop())
+    self.queueA,self.queueB = self.queueB,self.queueA
+    return self.queueB.pop()
