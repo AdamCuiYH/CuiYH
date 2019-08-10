@@ -1,0 +1,25 @@
+题目描述
+一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。
+
+思路:
+这是裴波那契数列的一个应用。由于青蛙可以跳1阶或2阶台阶时。因此，可以分两种情况：青蛙在最后一步的时候可以跳一级或者二级台阶。
+假设n个台阶跳f（n）种跳法，则最后一步由f(n-1)+f(n-2)构成。
+
+法一：递归
+class Solution:
+  def jumpfloor(self,number):
+    li = [0,1,2]:
+    if number < =2:
+      return li[number]
+    return self.jumpfloor(number-1) + self.jumpfloor(number-2)
+    
+法二：动态规划
+class Solution:
+  def jumpfloor(self,number):
+    li = [0,1,2]:
+    if number <= 2:
+      return li[number]
+    res = [0,1,2]
+    for i in range(3,n+1):
+      res.append(res[-1] + res[-2])
+    return [-1]
