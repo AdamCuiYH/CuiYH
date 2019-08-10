@@ -1,0 +1,29 @@
+题目描述
+我们可以用21的小矩形横着或者竖着去覆盖更大的矩形。请问用n个21的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？
+思路
+这还是一个裴波那契数列的应用题。第一步矩形覆盖时可以有两种覆盖方法，即横着放和竖着放，当竖着放的时候，接下来就相当于覆盖2n-1的大矩形；
+当横着放的时候，就相当于覆盖2n-2的大矩形。
+横着放：
+
+竖着放：
+在这里插入图片描述
+因此可以借助裴波那契数列来做。
+法一：递归 可能是时间复杂度过高，通过不了。
+class Solution:
+    def rectCover(self, number):
+        # write code here
+        if number == 0:
+            return 0
+        if number == 1:
+            return 1
+        if number == 2:
+            return 2
+        return self.rectCover(number-1) + self.rectCover(number-2)
+        
+法二：DP
+class Solution:
+  def rectCover(self,number):
+    res = [0,1,2]
+    for i in range(3,number+1):
+      res.append(res[-1]+res[-2])
+    return res[number]
