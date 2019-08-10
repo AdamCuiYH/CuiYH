@@ -20,5 +20,5 @@ class Solution:
       return 1
     res = [0,1]
     for i in range(2,n+1):
-      res.append(fibonacci[i-1] + fibonacci[i-2])
+      res.append(fibonacci[-1] + fibonacci[-2])
     return [-1]
