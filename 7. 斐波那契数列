@@ -1,0 +1,24 @@
+题目描述
+大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。
+n<=39
+
+思路：f(n) = f(n-1_ + f(n-2)
+法一：递归，运行不了。
+class Solution:
+  def fibonacci(self,n):
+    li = [0,1,1]
+    if n <= 2:
+      return li[n]
+    return self.fibonacci(n-1) + self.fibonacci(n-2)
+    
+法二：动态规划，还是上面的规律
+class Solution:
+  def fibonacci(self,n):
+    if n == 0:
+      return 0
+    if n == 1 or n == 2:
+      return 1
+    res = [0,1]
+    for i in range(2,n+1):
+      res.append(fibonacci[i-1] + fibonacci[i-2])
+    return [-1]
