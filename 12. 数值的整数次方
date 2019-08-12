@@ -1,0 +1,29 @@
+题目描述
+给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。
+快速幂求解
+思路：思路
+传统的幂运算，是对底数进行连乘，时间复杂度为o(n)，例如：2^13 = 222……*2，连乘十三次。
+利用指数的二进制，可以实现复杂度为o(logn)的幂运算。还是以2^13为例，13的二进制为1101，因此2的13次方可以分解成以下形式：
+和13的二进制1101相对比，只要二进制为1的位，就有权重，权重为2^(i-1)，i表示第几位，1101从右到左，依次为第1位，第2位，第3位，第4位。
+下面的工作就是如何确定二进制中的哪一位为1，这里可以利用位运算中的&和>>运算。由于1的二进制除了第一位是1，其他的全是0，
+因此可以利用n&1是否为0来判断n的二进制的当前最低位是否为1，如果n&1等于0，说明当前n的最低位不为1。利用右移运算来逐位读取。
+
+
+快速幂的代码如下：
+class Solution:
+  def Power(self,base,exponent):
+    if base == 0:
+      return 0
+    if exponent == 0:
+      return 1
+    flag = False #exponent小于0的标志位
+    if exponent < 0:
+      flag = True
+      exponent = -exponent
+    res = 1
+    while exponent:
+      if exponent & 1:
+        res *= base
+      base *= base
+      exponent = exponent >> 1
+    return res if not flag else 1/res
