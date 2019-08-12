@@ -1,0 +1,24 @@
+问题描述：
+反转链表，然后输出反转后链表的头结点
+
+思路：
+保存当前结点的下一个节点，以防止链表断开。
+代码：
+# -*- coding:utf-8 -*-
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution:
+    # 返回ListNode
+    def ReverseList(self, pHead):
+      if not pHead:
+        return None
+      pre = None
+      next = None
+      while pHead:
+        next = pHead.next
+        pHead.next = pre
+        pre = pHead
+        pHead = next
+      return pre
