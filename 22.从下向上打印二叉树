@@ -1,0 +1,26 @@
+题目描述
+从上往下打印出二叉树的每个节点，同层节点从左至右打印。
+思路：用一个队列，考察广度优先遍历
+代码：
+# -*- coding:utf-8 -*-
+class TreeNode:
+	def __init__(self,x):
+		self.val = x
+		self.left = None
+		self.right = None
+
+class Solution:
+	def printfromTopToTail(self,root):
+		if not root:
+			return []
+		queue = []
+		result = []
+		while queue:
+			node = queue.pop(0) # 当出队一个元素时，就需要判断当前的节点是否有左右子节点，如果有的话，
+            # 就需要先将左右子节点入队，然后再将节点的值，加入队列中。
+			if node.left:
+				queue.append(node.left)
+			if node.right:
+				queue.append(node.right)
+			result.append(node.val)
+		return result
