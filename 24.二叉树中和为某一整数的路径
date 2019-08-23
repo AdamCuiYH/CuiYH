@@ -1,0 +1,33 @@
+题目描述
+输入一颗二叉树的根节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。
+(注意: 在返回值的list中，数组长度大的数组靠前)
+思路：
+从根节点到叶子节点，一直向下，利用带记忆的深度遍历
+代码：
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    # 返回二维列表，内部每个列表表示找到的路径
+    def FindPath(self, root, expectNumber):
+        # write code here
+        if root == None:   # 这里一定要保证如果root为空，递归的时候就说明到达叶节点了
+            return []
+        res = []
+        if root.val == expectNumber and root.left == None and root.right == None:
+        #到达叶节点并且是叶节点的值已经与当前的目标值相等了
+            res.append([root.val])
+        # 继续对左右子树和剩下的目标值递归
+        left = self.FindPath(root.left,expectNumber - root.val)
+        right = self.FindPath(root.right,expectNumber - root.val)
+        #这里不用担心root.left为空，如果为空的话，下一步就会停止递归，并返回[],然后再回到上一级
+        for i in left + right:   
+        # 这一步循环append保证了路径如果存在的话根节点的值一定会在子节点的值前面，
+        # 而且left+right如果为空，那么这一步不会返回任何东西。
+        # 这也保证了，如果叶节点的值不等于当前的目标值的话
+        # 即这一条路径上的和不等于总的目标值，就不会将包含叶节点的路径返回。
+            res.append([root.val]+i)
+        return res
