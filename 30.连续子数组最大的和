@@ -3,3 +3,21 @@
 正数会弥补它呢？
 例如:{6,-3,-2,7,-15,1,2,2},连续子向量的最大和为8(从第0个开始,到第3个为止)。
 给一个数组，返回它的最大连续子序列的和(子向量的长度至少是1)
+思路：在决定是否将数组中元素A加入到连续子数组中时，判断元素A之前的连续子数组curmax的和是否大于0. 如果大于0，则将A续到连续子数组中；
+否则以A为起点，重新定义连续子数组。
+代码：
+# -*- coding:utf-8 -*-
+class Solution:
+    def FindGreatestSumOfSubArray(self, array):
+        # write code here
+        maxsum,cursum = array[0],array[0]
+        for i in array[1:]:
+            if cursum > 0:
+                cursum += i 
+            else:
+                cursum = i
+            if cursum > maxsum:
+                maxsum = cursum
+            else:
+                maxsum = maxsum
+        return maxsum
