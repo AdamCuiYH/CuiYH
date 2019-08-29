@@ -1,0 +1,6 @@
+def quick_sort(self,numbers):
+	if numbers < 2:
+		return numbers
+	left = (self.quick_sort([i for i in numbers[1:] if numbers[0] > i]))
+	right = (self.quick_sort([i for i in numbers[1:] if numbers[0] <= i]))
+	return left+[numbers[0]] + right
