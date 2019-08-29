@@ -19,3 +19,6 @@ class Solution:
             else:
                 heapq.heappushpop(res,-i)
         return sorted(list(map(lambda x:-x,res)))
+
+
+注意：如果要求最大的K个数，则使用最小堆，heapq默认是建立最小堆，因此建立最大堆的时候使用负号
